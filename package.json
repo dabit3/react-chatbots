@@ -1,0 +1,20 @@
+{
+  "name": "react-chatbot",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "aws-amplify": "^0.4.8",
+    "aws-amplify-react": "^0.1.54",
+    "react": "^16.4.1",
+    "react-chat-ui": "^0.3.2",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4",
+    "uuid": "^3.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
