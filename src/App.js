@@ -61,7 +61,7 @@ class App extends Component {
           <p style={styles.headerTitle}>Welcome to my travel bot!</p>
         </header>
         <div style={styles.messagesContainer}>
-        <h1>{this.state.finalMessage}</h1>
+        <h2>{this.state.finalMessage}</h2>
         <ChatFeed
           messages={this.state.messages}
           hasInputField={false}

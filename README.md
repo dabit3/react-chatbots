@@ -1,12 +1,12 @@
-# Building ChatBots with React, & AWS
+# Building ChatBots with React & AWS
+
+![](https://i.imgur.com/091cjMi.png)
 
 In this tutorial, I'll walk through how to leverage AWS Amplify, AWS Lambda, & Amazon Lex to build a functioning chatbot!
 
 > To see the final code, click [here](https://github.com/dabit3/react-chatbots).
 
-As voice and messaging channels become more and more important, voice as a platform is emerging to be another important target for developers who want to extend their existing skillset to create applications that are becoming more and more in demand.
-
-Amazon Lex is service for building conversational interfaces into any application using voice and text.
+As voice and messaging channels become more and more important, conversational interfaces as a platform are emerging to be another important target for developers who want to extend their existing skillset to create applications that are becoming more and more in demand. Amazon Lex is service for building conversational interfaces into any application using voice and text.
 
 In this tutorial, we'll use the AWS Mobile CLI to create a new cloud-enabled project and add an Amazon Lex bot to our project. We'll then create a React application and use the AWS Amplify library to connect to and interact with the bot.
 
@@ -410,7 +410,7 @@ render() {
         <p style={styles.headerTitle}>Welcome to my travel bot!</p>
       </header>
       <div style={styles.messagesContainer}>
-      <h1>{this.state.finalMessage}</h1>
+      <h2>{this.state.finalMessage}</h2>
       <ChatFeed
         messages={this.state.messages}
         hasInputField={false}
@@ -462,6 +462,8 @@ const styles = {
   }
 }
 ```
+
+![](https://i.imgur.com/NT5VegL.png)
 
 > To see the final code, click [here](https://github.com/dabit3/react-chatbots/blob/master/src/App.js).
 
