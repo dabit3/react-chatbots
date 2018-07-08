@@ -1,24 +1,7 @@
 import React, { Component } from 'react';
 
-import config from './aws-exports'
-
-import Amplify from 'aws-amplify';
 import { Interactions } from 'aws-amplify';
 import { ChatFeed, Message } from 'react-chat-ui'
-
-
-Amplify.configure({
-  ...config,
-  Interactions: {
-    bots: {
-      "BookTripMOBILEHUB": {
-        "name": "BookTripMOBILEHUB",
-        "alias": "$LATEST",
-        "region": "us-east-1",
-      },
-    }
-  }
-});
 
 class App extends Component {
   state = {
@@ -28,11 +11,9 @@ class App extends Component {
       new Message({
         id: 1,
         message: "Hello, how can I help you today?",
-        name: 'AWS Chatbot'
       })
-    ],
+    ]
   }
-  
   _handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       this.submitMessage()
@@ -45,10 +26,11 @@ class App extends Component {
     })
   }
   async submitMessage() {
-    const input = this.state.input
+    const { input } = this.state
+    if (input === '') return
     const message = new Message({
       id: 0,
-      message: input
+      message: input,
     })
     let messages = [...this.state.messages, message]
 
@@ -59,27 +41,18 @@ class App extends Component {
     const response = await Interactions.send("BookTripMOBILEHUB", input);
     const responseMessage = new Message({
       id: 1,
-      message: response.message
+      message: response.message,
     })
     messages  = [...this.state.messages, responseMessage]
-    console.log('response: ', response)
+    this.setState({ messages })
+
     if (response.dialogState === 'Fulfilled') {
       if (response.intentName === 'BookTripBookHotel') {
         const { slots: { BookTripCheckInDate, BookTripLocation, BookTripNights, BookTripRoomType } } = response
         const finalMessage = `Congratulations! Your trip to ${BookTripLocation}  with a ${BookTripRoomType} rooom on ${BookTripCheckInDate} for ${BookTripNights} days has been booked!!`
         this.setState({ finalMessage })
       }
-      console.log('intentName:', response.intentName)
-      if (response.intentName === 'BookTripBookCar') {
-        const { slots: { BookTripCarType, BookTripPickUpCity, BookTripPickUpDate }} = response
-        const finalMessage = `Congratulations! Your ${BookTripCarType} for pick up in ${BookTripPickUpCity} on ${BookTripPickUpDate} has been reserved!`
-        
-        this.setState({ finalMessage }, () => {
-          alert(this.state.finalMessage)
-        })
-      }  
     }
-    this.setState({ messages })
   }
   render() {
     return (
@@ -92,17 +65,7 @@ class App extends Component {
         <ChatFeed
           messages={this.state.messages}
           hasInputField={false}
-          bubbleStyles={
-            {
-              text: {
-                fontSize: 16,
-              },
-              chatbubble: {
-                borderRadius: 30,
-                padding: 10
-              }
-            }
-          }
+          bubbleStyles={styles.bubbleStyles}
         />
 
         <input
@@ -118,6 +81,15 @@ class App extends Component {
 }
 
 const styles = {
+  bubbleStyles: {
+    text: {
+      fontSize: 16,
+    },
+    chatbubble: {
+      borderRadius: 30,
+      padding: 10
+    }
+  },
   headerTitle: {
     color: 'white',
     fontSize: 22
