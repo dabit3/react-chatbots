@@ -1,6 +1,8 @@
-# Building ChatBots with React & AWS
+# Building ChatBots with React, & AWS
 
-In this tutorial, I'll walk through how to leverage AWS Amplify & Amazon Lex to build a functioning chatbot!
+In this tutorial, I'll walk through how to leverage AWS Amplify, AWS Lambda, & Amazon Lex to build a functioning chatbot!
+
+> To see the final code, click [here](https://github.com/dabit3/react-chatbots).
 
 As voice and messaging channels become more and more important, voice as a platform is emerging to be another important target for developers who want to extend their existing skillset to create applications that are becoming more and more in demand.
 
@@ -461,4 +463,7 @@ const styles = {
 }
 ```
 
+> To see the final code, click [here](https://github.com/dabit3/react-chatbots/blob/master/src/App.js).
+
+Now, we should be able to ask the bot any of the sample utterances from our __BookTripBotBookHotel__ hotel bot!
 
