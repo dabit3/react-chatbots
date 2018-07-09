@@ -54,7 +54,7 @@ Now that the CLI is installed and configured, let's create a new AWS project:
 awsmobile init -y
 ```
 
-Once the project is created, we'll need to add cognito funcionality in order to interact with Lex. To do so we can run the following command:
+Once the project is created, we'll need to add Amazon Cognito functionality in order to interact with Lex. To do so we can run the following command:
 
 ```bash
 awsmobile user-signin enable
@@ -362,7 +362,7 @@ async submitMessage() {
     messages,
     input: ''
   })
-  const response = await Interactions.send("BookTripMOBILEHUB", input);
+  const response = await Interactions.send("BookTripBotMOBILEHUB", input);
   const responseMessage = new Message({
     id: 1,
     message: response.message,
@@ -382,13 +382,13 @@ async submitMessage() {
 
 ### This function does a lot, so let's walk through it!
 
-- The message is __async__ because we will be using __await__ to handle a promise later on in the function.
+- The submitMessage function is __async__ because we will be using __await__ to handle a promise later on in the function.
 
 - Destructure the `input` value from the state, then check to see if it is a valid string before we continue.
 
-- Create a new __Message__, passing in the ID of 0 and the input value as the message property.
+- Create a new __Message__, passing in the ID of 0 and the `input` value as the `message` property.
 
-- Create a new messages array using the existing `state.messages`, and passing in the new message to the array. We then update the state with the new messages array and the input value to be an empty string.
+- Create a new messages array using the existing `state.messages`, and passing in the new message to the array. We then update the state with the new messages array and the `input` value to be an empty string.
 
 - Call `Interactions.send`, passing in two arguments: The bot name and the value we are passing to it.
 
